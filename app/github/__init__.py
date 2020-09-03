@@ -1,13 +1,16 @@
 import requests
+from configparser import ConfigParser
 
 GITHUB_ENDPOINT = "https://api.github.com"
+# Kindly add your GitHub API token
+'''config = ConfigParser()
+config.read('../config/config.ini')
+durl = config.get('API_TOKEN', GITHUB_API_TOKEN)'''
 GITHUB_API_TOKEN = "599f8aacd626ad03ea3223d2e98e7790c7c16e33"
 
 '''
  Following headers are required to be added
  * Authorization: token <PERSONAL ACCESS TOKEN>
- * Manju's Token: 0e1063516d468057cbda06c224c26bbe69444afc
- * Siddu's Token: 599f8aacd626ad03ea3223d2e98e7790c7c16e33
 '''
 
 request_headers = {
@@ -40,6 +43,7 @@ def findCommits(owner, repo, start_date, end_date):
         print("[ERROR] Fetching Commits Failed - ", someErr)
         return None
 
+# Function to get all the Authors in the repository
 def findAuthors(history_list):
     print("[DEBUG] Total Commits Found", len(history_list))
     unique_authors = set()
@@ -50,6 +54,7 @@ def findAuthors(history_list):
     print("[TRACE] Total unique authors found:", len(unique_authors))
     return unique_authors
 
+# Function to achieve task KPI's
 def findTouchesKPI(history_list):
     fileAuthorDict = {}
     #print('[DEBUG] Total Commits Found', len(history_list))
@@ -66,8 +71,8 @@ def findTouchesKPI(history_list):
                     filename = eachFile["filename"]
                     #print("[TRACE] Got the filename as:", filename)
                     if filename not in fileAuthorDict: 
-                        #print("[TRACE] File init for first time:", filename)
-                        #print ("file authors are:", set([str(author_of_commit)]))  
+                        print("[TRACE] File init for first time:", filename)
+                        print ("file authors are:", set([str(author_of_commit)]))  
                         fileAuthorDict[str(filename)] = {
                             "count": 1,
                             "authors": set([str(author_of_commit)])    
@@ -76,14 +81,14 @@ def findTouchesKPI(history_list):
                         print("[TRACE] File already found in map:", filename, fileAuthorDict[str(filename)])
                         fileAuthorDict[str(filename)]["count"] = fileAuthorDict[str(filename)]["count"] + 1
                         fileAuthorDict[str(filename)]["authors"].add(str(author_of_commit))
-                        #fileAuthorDict["au"] = len(fileAuthorDict["authors"])
+                        
         
 
         for key, value in fileAuthorDict.items():
             authors_count = len(value["authors"])
             #print(value["authors"],authors_count)
             fileAuthorDict[key].update({"auth_count":authors_count})
-        #print(fileAuthorDict)
+        print(fileAuthorDict)
         return fileAuthorDict       
     except Exception as someErr:
         print("[ERROR] Fetching touched kpi failed !", someErr)
