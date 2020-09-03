@@ -13,7 +13,7 @@
 <!-- Running the Application -->
 ## Running the Application
 Clone the repository and run the *main.py* file by passing the **repository URL, Start Date, End Date** as arguments durning the run time.
-**Example:** python main.py https://github.com/microsoft/nni 2020-04-02 2020-09-02 or just give **docker run github_data**
+**Example:** python main.py https://github.com/microsoft/nni 2020-04-02 2020-09-02 or just give **$ docker build -t github_data . and $ docker run github_data**
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
