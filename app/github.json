@@ -1,0 +1,22 @@
+DROP TABLE IF EXISTS data;
+create table data (application varchar(10),hardware_platform varchar(25),dates date, retention_day_1 float,retention_day_3 float,retention_day_7 float);
+
+create table data2 (player_id bigint,dates date, value bigint);
+
+
+
+\copy data(application, hardware_platform, dates, retention_day_1, retention_day_3, retention_day_7) from 'E:\\Huge_Games\\sql1.csv' DELIMITER ',' CSV HEADER;
+
+\copy data2(player_id ,date , value ) from 'E:\\Huge_Games\\sql2.csv' DELIMITER ',' CSV HEADER;
+
+
+insert into data values ('app1',	'ios',	'2018-01-26',	59.4,	45.5,	27.6);
+
+insert into data values('app3','google_play','28-01-2018',54.4,	40.3,	23.2)
+
+="'" & TEXT(A1,"mm -dd -yyyy") & "'"
+
+SELECT  ((dates) - INTERVAL '3 DAY') AS dateat,
+application,hardware_platform,avg(retention_day_1),
+avg(retention_day_3),avg(retention_day_7) 
+from data group by 1,2,3;

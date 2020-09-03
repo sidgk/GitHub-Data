@@ -32,4 +32,4 @@ repo_commits = github.findCommits(username, repo_name, since, until)
 
 kpiData = github.findTouchesKPI(repo_commits)
 
-utils.writeToJSONFile("test.json", kpiData)
+utils.writeToJSONFile("./data/nni.json", kpiData)
