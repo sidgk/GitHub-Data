@@ -1,0 +1,4 @@
+# Things not to be tracked
+.extras
+.vscode
+.history
