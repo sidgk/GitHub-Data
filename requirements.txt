@@ -1,6 +1,8 @@
 requests
 responses
+jsonpickle
 urllib3
+datetime
 configparser
 pandas
 matplotlib
