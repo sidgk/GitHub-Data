@@ -2,8 +2,6 @@ import pandas as pd
 from pandas import DataFrame
 import numpy as np
 import matplotlib.pyplot as plt
-from bar_chart_race import load_dataset, bar_chart_race
-import bar_chart_race as bcr
 import json
 
 #data_df = pd.read_json('C:/Users/Alberto/nutrients.json', lines=True)
@@ -11,14 +9,14 @@ import json
 file = 'E:/Seerene/nni.json'
 with open(file) as dict_file:
     dict_data = json.load(dict_file)
-#print(dict_data, type(dict_data))
+print(dict_data, type(dict_data))
 #convert dictionary to DataFrame
 df = (pd.read_json(dict_data).T
     .reset_index()
     .rename(columns={'index': 'Filename', 'auth_count': 'authors_count'}))
 # convert lists of authors to comma-separated strings
 df['authors'] = df['authors'].apply(lambda x: ', '.join(x['py/set']))
-
+print(df)
 '''
 No of authors before splitting the authors
 
@@ -28,6 +26,7 @@ print(unique_authors, len(unique_authors))
 print(df.groupby('authors')['Filename'].count())
 '''
 df["authors"] = df.authors.str.split(",", expand=True)
+
 
 # count of files in repo
 files_count = df["Filename"].count()
@@ -40,7 +39,12 @@ print(unique_authors, len(unique_authors))
 # Number of files committed by each author
 #print(df.groupby('authors')['Filename'].count())
 df_author_unique_commits=df.groupby('authors')['Filename'].count()
-print (df_author_unique_commits)
+unique_files= df.Filename.unique()
+#print (df_author_unique_commits)
+
+# Number of files committed by each author
+print(df.groupby('Filenames')['count'].count())
+
 #number of files in Repo
 df_author_unique_commits.plot.bar(x="authors", y="count", rot=15,figsize = (12,6),align='center',color='black', edgecolor = 'red', title="Unique Count of Authors with the number of Commits")
 
@@ -56,5 +60,5 @@ plt.xlim(1,15)
 # set the location of the legend
 plt.legend()
 # Saving the plot as a 'png'
-#plt.savefig('./downloads/nni_num_touches_limit15Files.png')
+plt.savefig('./downloads/nni_num_touches_limit15Files.png')
 plt.show(block=True)
