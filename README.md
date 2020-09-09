@@ -1,4 +1,4 @@
-# Seerene
+# Read GitHub Repo
 
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
