@@ -19,6 +19,7 @@ Clone the repository and run the *main.py* file by passing the **repository URL,
 ## About The Project
 
 * Choose the repositories for your analysis.
+* The Goal of this project is to get the insights of any given GitHub repository such as no of Authors (contributors), no of commits each Author has committed and all the necessary details of the repository.
   * I have choosen:
     1) https://github.com/facebookresearch/fairscale 
     2) https://github.com/microsoft/nni 
