@@ -6,7 +6,7 @@ GITHUB_ENDPOINT = "https://api.github.com"
 '''config = ConfigParser()
 config.read('../config/config.ini')
 durl = config.get('API_TOKEN', GITHUB_API_TOKEN)'''
-GITHUB_API_TOKEN = "599f8aacd626ad03ea3223d2e98e7790c7c16e33"
+GITHUB_API_TOKEN = "pass you assess token"
 
 '''
  Following headers are required to be added
